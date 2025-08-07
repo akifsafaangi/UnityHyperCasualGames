@@ -1,0 +1,87 @@
+# This .gitignore file is meant to be placed at the root of your multi-Unity-projects directory
+
+# Ignore common Unity cache folders in all sub-projects
+*/[Ll]ibrary/
+*/[Tt]emp/
+*/[Oo]bj/
+*/[Bb]uild/
+*/[Bb]uilds/
+*/[Ll]ogs/
+*/[Uu]ser[Ss]ettings/
+*.log
+
+# MemoryCaptures and Recordings in all sub-projects
+*/[Mm]emoryCaptures/
+*/[Rr]ecordings/
+
+# Blender files
+*.blend1
+*.blend1.meta
+
+# Uncomment to ignore Asset Store Tools plugin in any project
+# */[Aa]ssets/AssetStoreTools*
+
+# JetBrains Rider
+*/[Aa]ssets/Plugins/Editor/JetBrains*
+*.DotSettings.user
+
+# Visual Studio & Rider caches
+.vs/
+.gradle/
+
+# IDE and build system generated files
+ExportedObj/
+.consulo/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Unity3D generated meta files
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# Unity crash logs and mono crashes
+sysinfo.txt
+mono_crash.*
+
+# Build artifacts
+*.apk
+*.aab
+*.unitypackage
+*.unitypackage.meta
+*.app
+crashlytics-build.properties
+
+# TestRunner generated files
+*/InitTestScene*.unity*
+
+# Addressables
+*/ServerData/
+*/[Aa]ssets/StreamingAssets/aa*
+*/[Aa]ssets/AddressableAssetsData/link.xml*
+*/[Aa]ssets/Addressables_Temp*
+*/[Aa]ssets/AddressableAssetsData/*/*.bin*
+
+# Unity Visual Scripting
+*/[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Flow/UnitOptions.db
+*/[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Flow/UnitOptions.db.meta
+*/[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Core/Property Providers
+*/[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Core/Property Providers.meta
+
+# Play mode auto-generated test scenes
+*/[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# Unity temp project lock
+*.utmp
