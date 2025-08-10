@@ -5,9 +5,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    private static float rotateSpeed = 100.0f;
+    public static float rotationSpeed = 100.0f;
+    public static float rotationTime = 3;
 
     private int circleNumber;
+
+    private Color[] changingColors;
     private void Awake()
     {
         instance = this;
@@ -16,7 +19,20 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        MakeNewCircle();
+        ResetGame();
+    }
+
+    void ResetGame()
+    {
+        changingColors = Colors.colorArray;
+        BallHandler.instance.UpdateColor(changingColors[0]);
+        BallHandler.instance.ChangeColor();
+
+        GameObject circle = Instantiate(Resources.Load("Round" + UnityEngine.Random.Range(1, 5))) as GameObject;
+        circle.transform.position = new Vector3(0.0f, 0.0f, 23);
+        circle.name = "Circle" + circleNumber;
+
+        BallHandler.instance.UpdateBallsCount();
     }
 
     public void MakeNewCircle()
@@ -49,7 +65,11 @@ public class GameManager : MonoBehaviour
         GameObject circle = Instantiate(Resources.Load("Round" + UnityEngine.Random.Range(1,5))) as GameObject;
         circle.transform.position = new Vector3(0.0f, 0.0f, 23);
         circle.name = "Circle" + circleNumber;
-    }
 
-    public static float GetRotateSpeed() {  return rotateSpeed; }
+
+        BallHandler.instance.UpdateBallsCount();
+
+        BallHandler.instance.UpdateColor(changingColors[circleNumber]);
+        BallHandler.instance.ChangeColor();
+    }
 }

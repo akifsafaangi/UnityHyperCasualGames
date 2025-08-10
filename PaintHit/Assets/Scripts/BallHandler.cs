@@ -3,16 +3,21 @@ using UnityEngine;
 
 public class BallHandler : MonoBehaviour
 {
-    public static Color ballColor = Color.blue;
+    public static BallHandler instance;
+
+    public static Color ballColor;
     public GameObject ball;
 
     private float speed = 100.0f;
 
     private int ballsCount;
+
+    public SpriteRenderer spriteRend;
+    public Material splashMat;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-        ballsCount = 4;
+        instance = this;
     }
 
     // Update is called once per frame
@@ -40,5 +45,14 @@ public class BallHandler : MonoBehaviour
     void MakeNewCircle()
     {
         GameManager.instance.MakeNewCircle();
+    }
+
+    public void UpdateBallsCount () { ballsCount = LevelHandler.ballsCount; }
+    public void UpdateColor(Color newColor) { ballColor = newColor; }
+    
+    public void ChangeColor()
+    {
+        spriteRend.color = ballColor;
+        splashMat.color = ballColor;
     }
 }

@@ -22,6 +22,6 @@ public class Circle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.up * Time.deltaTime * GameManager.GetRotateSpeed());
+        transform.Rotate(Vector3.up * Time.deltaTime * GameManager.rotationSpeed);
     }
 }
