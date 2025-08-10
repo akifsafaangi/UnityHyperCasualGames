@@ -28,6 +28,7 @@
 # Visual Studio & Rider caches
 .vs/
 .gradle/
+.vsconfig
 
 # IDE and build system generated files
 ExportedObj/

@@ -1,9 +1,11 @@
 using System;
+using UnityEditor.Media;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public static int currentCircleNumber;
 
     public static float rotationSpeed = 100.0f;
     public static float rotationTime = 3;
@@ -33,6 +35,10 @@ public class GameManager : MonoBehaviour
         circle.name = "Circle" + circleNumber;
 
         BallHandler.instance.UpdateBallsCount();
+        currentCircleNumber = circleNumber;
+
+        LevelHandler.currentColor = BallHandler.ballColor;
+        MakeHurdles();
     }
 
     public void MakeNewCircle()
@@ -61,6 +67,7 @@ public class GameManager : MonoBehaviour
         }
 
         circleNumber++;
+        currentCircleNumber = circleNumber;
 
         GameObject circle = Instantiate(Resources.Load("Round" + UnityEngine.Random.Range(1,5))) as GameObject;
         circle.transform.position = new Vector3(0.0f, 0.0f, 23);
@@ -71,5 +78,26 @@ public class GameManager : MonoBehaviour
 
         BallHandler.instance.UpdateColor(changingColors[circleNumber]);
         BallHandler.instance.ChangeColor();
+        LevelHandler.currentColor = BallHandler.ballColor;
+
+        MakeHurdles();
+    }
+
+    void MakeHurdles()
+    {
+        if (circleNumber == 1)
+            FindFirstObjectByType<LevelHandler>().MakeHurdles1();
+
+        if (circleNumber == 2)
+            FindFirstObjectByType<LevelHandler>().MakeHurdles2();
+
+        if (circleNumber == 3)
+            FindFirstObjectByType<LevelHandler>().MakeHurdles3();
+
+        if (circleNumber == 4)
+            FindFirstObjectByType<LevelHandler>().MakeHurdles4();
+
+        if (circleNumber == 5)
+            FindFirstObjectByType<LevelHandler>().MakeHurdles5();
     }
 }
