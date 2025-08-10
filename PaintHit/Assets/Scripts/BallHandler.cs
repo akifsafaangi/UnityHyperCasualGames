@@ -8,10 +8,11 @@ public class BallHandler : MonoBehaviour
 
     private float speed = 100.0f;
 
+    private int ballsCount;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        ballsCount = 4;
     }
 
     // Update is called once per frame
@@ -25,8 +26,19 @@ public class BallHandler : MonoBehaviour
 
     void HitBall()
     {
+        if(ballsCount <= 1)
+        {
+            Invoke("MakeNewCircle", 0.4f);
+        }
+        ballsCount--;
+
         GameObject ballObject = Instantiate<GameObject>(ball, new Vector3(0.0f, 0.0f, -8.0f), Quaternion.identity);
         ballObject.GetComponent<MeshRenderer>().material.color = ballColor;
         ballObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * speed, ForceMode.Impulse);
+    }
+
+    void MakeNewCircle()
+    {
+        GameManager.instance.MakeNewCircle();
     }
 }

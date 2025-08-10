@@ -9,15 +9,15 @@ public class ColorChanger : MonoBehaviour
     {
         if(collision.gameObject.tag == "red")
         {
-            base.gameObject.GetComponent<Collider>().enabled = false;
+            gameObject.GetComponent<Collider>().enabled = false;
             collision.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
             GetComponent<Rigidbody>().AddForce(Vector3.down * 50, ForceMode.Impulse);
-            Destroy(base.gameObject, 0.5f);
+            Destroy(gameObject, 0.5f);
             print("Game Over");
         }
         else
         {
-            base.gameObject.gameObject.GetComponent<Collider>().enabled = true;
+            gameObject.gameObject.GetComponent<Collider>().enabled = false;
             GameObject splashObject = Instantiate(Resources.Load("splash1")) as GameObject;
             splashObject.transform.parent = collision.gameObject.transform;
             Destroy(splashObject, 0.1f);
