@@ -12,11 +12,13 @@ public class ColorChanger : MonoBehaviour
             gameObject.GetComponent<Collider>().enabled = false;
             collision.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
             GetComponent<Rigidbody>().AddForce(Vector3.down * 50, ForceMode.Impulse);
+            HeartsFun(collision.gameObject);
             Destroy(gameObject, 0.5f);
             print("Game Over");
         }
         else
         {
+            GameObject.Find("HitSound").GetComponent<AudioSource>().Play();
             gameObject.gameObject.GetComponent<Collider>().enabled = false;
             GameObject splashObject = Instantiate(Resources.Load("splash1")) as GameObject;
             splashObject.transform.parent = collision.gameObject.transform;
@@ -33,5 +35,14 @@ public class ColorChanger : MonoBehaviour
         target.gameObject.GetComponent<MeshRenderer>().enabled = true;
         target.gameObject.GetComponent<MeshRenderer>().material.color = BallHandler.ballColor;
         Destroy(base.gameObject);
+    }
+    void HeartsFun(GameObject g)
+    {
+        int @int = PlayerPrefs.GetInt("hearts");
+        if (@int == 1)
+        {
+            FindFirstObjectByType<GameManager>().FailGame();
+            FindFirstObjectByType<GameManager>().DecreaseHeart();
+        }
     }
 }
